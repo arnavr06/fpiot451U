@@ -8,5 +8,10 @@
         "firstName": "David",
         "lastName": "Fincher",
         "nationality": "United States"
+    },
+    {
+        "firstName": "Quentin",
+        "lastName": "Tarantino",
+        "nationality": "United Kingdom"
     }
 ]

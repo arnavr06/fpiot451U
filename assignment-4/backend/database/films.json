@@ -2,11 +2,19 @@
     {
         "name": "Inception",
         "year": "2010",
-        "directorId": 1
+        "directorId": 1,
+        "genreId": 17
     },
     {
         "name": "Fight Club",
         "year": "1999",
-        "directorId": 2
+        "directorId": 2,
+        "genreId": 1
+    },
+    {
+        "name": "Once Upon a Time in Hollywood",
+        "year": "2019",
+        "directorId": 3,
+        "genreId": 20
     }
 ]

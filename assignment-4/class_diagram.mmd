@@ -1,0 +1,42 @@
+
+
+classDiagram
+    class Actor {
+        +Integer id
+        +String first_name
+        +String last_name
+        +Integer age
+        +List~Film~ films
+        +to_json() Dict
+    }
+
+    class Director {
+        +Integer id
+        +String first_name
+        +String last_name
+        +String nationality
+        +List~Film~ films
+        +to_json() Dict
+    }
+
+    class Film {
+        +Integer id
+        +String name
+        +String year
+        +Integer director_id
+        +Director director
+        +List~Actor~ actors
+        +Genre genre
+        +to_json() Dict
+    }
+
+    class Genre {
+        +Integer id
+        +String name
+        +List~Film~ films
+        +to_json() Dict
+    }
+
+Actor "many" -- "many" Film: acted_in
+Director "1" -- "many" directed
+Genre "1" -- "many" Film: contains

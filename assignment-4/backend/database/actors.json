@@ -8,5 +8,10 @@
         "firstName": "Brad",
         "lastName": "Pitt",
         "age": 57
+    },
+    {
+        "firstName": "Matthew",
+        "lastName": "McConaughey",
+        "age": 55
     }
 ]

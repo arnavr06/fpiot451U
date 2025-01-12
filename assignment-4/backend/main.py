@@ -1,6 +1,6 @@
 from flask import request, jsonify
 from config import app, db
-from models import Actor, Director, Film, film_actor
+from models import Actor, Director, Film, Genre, film_actor
 
 @app.route("/actors", methods=["GET"])
 def get_actors():
@@ -87,10 +87,23 @@ def delete_director(director_id):
     db.session.commit()
     return jsonify({"message": "Successfully deleted director"}), 200
 
+
 @app.route("/films", methods=["GET"])
 def get_films():
     films = Film.query.all()
-    json_films = list(map(lambda x: x.to_json(), films))
+    actors = Actor.query.all()
+    genres = Genre.query.all()
+    json_films = []
+    for film in films:
+        film_info = film.to_json()
+        json_films.append(film_info)
+    # for film in films:
+    #     film_info = film.to_json()
+    #     print(f"Film: {film_info}")
+    #     for actor in film.actors:
+    #         film_info['actorId'] = actor.id
+    #         film_info['actorFullName'] = f"{actor.first_name} {actor.last_name}"
+    #         json_films.append(film_info.copy()) # Used copy here to ensure that each element in json_films is independent of each other
     return jsonify({"films": json_films})
 
 @app.route("/create_film", methods=["POST"])
@@ -98,12 +111,16 @@ def create_film():
     name = request.json.get("name")
     year = request.json.get("year")
     director_id = request.json.get("directorId")
-    if not name or not year or not director_id:
+    genre_id = request.json.get("genreId")
+    if not name or not year or not director_id or not genre_id:
         return jsonify({"message": "Please fill out all fields"}), 400
     director = Director.query.get(director_id)
+    genre = Genre.query.get(genre_id)
     if not director:
         return jsonify({"message": "Director not found"}), 404
-    new_film = Film(name=name, year=year, director_id=director_id)
+    if not genre:
+        return jsonify({"message": "Genre not found"}), 404
+    new_film = Film(name=name, year=year, director_id=director_id, genre_id=genre_id)
     try:
         db.session.add(new_film)
         db.session.commit()
@@ -144,7 +161,6 @@ def get_film_actors():
     film_actors = db.session.query(film_id, film_name, actor_id, actor_first_name, actor_last_name).select_from(film_actor).join(Film, film_actor.c.film_id == Film.id).join(Actor, film_actor.c.actor_id == Actor.id).all()
     json_film_actors = [{'film_id': x.film_id, 'film_name': x.film_name, 'actor_id': x.actor_id, 'actor_first_name': x.actor_name, 'actor_last_name': x.actor_last_name} for x in film_actors]
     return jsonify({"film_actors": json_film_actors})
-
 
 
 if __name__ == "__main__":

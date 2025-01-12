@@ -8,6 +8,7 @@ import './App.css'
 import ActorForm from "./ActorForm"
 import DirectorForm from "./DirectorForm"
 import FilmForm from './FilmForm'
+import PivotTable from './PivotTable'
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 
 function App() {
@@ -15,7 +16,6 @@ function App() {
   const [films, setFilms] = useState([])
   const [directors, setDirectors] = useState([])
   const [isModalOpen, setIsModalOpen] = useState(false)
-  const [currentActor, setCurrentActor] = useState({})
   const [currentEntity, setCurrentEntity] = useState({})
   const [entityType, setEntityType] = useState("")
 
@@ -34,6 +34,7 @@ function App() {
   const fetchFilms = async () => {
     const response = await fetch("http://127.0.0.1:5000/films");
     const data = await response.json();
+    console.log("Films:", data.films);
     setFilms(data.films);
   };
 
@@ -93,6 +94,9 @@ function App() {
             <li>
               <Link to="/add-film-actor">Add Film-Actor Relationship</Link>
             </li>
+            <li>
+              <Link to="/pivot">Pivot Table</Link>
+            </li>
           </ul>
         </nav>
 
@@ -102,6 +106,7 @@ function App() {
           <Route path="/directors" element={<DirectorList directors={directors} updateDirector={(director) => openEditModal(director, "director")} updateCallback={onUpdate} openCreateModal={() => openCreateModal("director")}/>} />
           <Route path="/films" element={<FilmList films={films} updateFilm={(film) => openEditModal(film, "film")} updateCallback={onUpdate} openCreateModal={() => openCreateModal("film")}/>} />
           {/* <Route path="/add-film-actor" element={<AddFilmActor } */}
+          <Route path="/pivot" element={<PivotTable fetchFilms={fetchFilms} films={films} />} />
         </Routes>
 
         {isModalOpen && (
