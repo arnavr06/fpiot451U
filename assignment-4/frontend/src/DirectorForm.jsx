@@ -1,21 +1,21 @@
-import { useState } from "react"
+import { useState } from "react";
 
-const ActorForm = ({ existingActor = {}, updateCallback }) => {
-    const [firstName, setFirstName] = useState(existingActor.firstName || "")
-    const [lastName, setLastName] = useState(existingActor.lastName || "")
-    const [age, setAge] = useState(existingActor.age || "")
+const DirectorForm = ({ existingDirector = {}, updateCallback }) => {
+    const [firstName, setFirstName] = useState(existingDirector.firstName || "");
+    const [lastName, setLastName] = useState(existingDirector.lastName || "");
+    const [nationality, setNationality] = useState(existingDirector.nationality || "");
 
-    const updating = Object.entries(existingActor).length !== 0
+    const updating = Object.entries(existingDirector).length !== 0;
 
     const onSubmit = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
 
         const data = {
             firstName,
             lastName,
-            age
+            nationality
         };
-        const url = "http://127.0.0.1:5000/" + (updating ? `update_actor/${existingActor.id}` : "create_actor")
+        const url = "http://127.0.0.1:5000/" + (updating ? `update_director/${existingDirector.id}` : "create_director");
         const options = {
             method: updating ? "PATCH" : "POST",
             headers: {
@@ -26,20 +26,19 @@ const ActorForm = ({ existingActor = {}, updateCallback }) => {
         try {
             const response = await fetch(url, options);
             if (response.status !== 201 && response.status !== 200) {
-                const data = await response.json()
-                alert(data.message)
+                const data = await response.json();
+                alert(data.message);
             } else {
-                console.log("Successfully created actor");
-                updateCallback()
+                updateCallback();
             }
         } catch (error) {
             console.error("Error during fetch:", error);
-            alert("Failed to fetch. Please check the server and try again.")
+            alert("Failed to fetch. Please check the server and try again.");
         }
     };
 
-    return(
-        <form onSubmit={onSubmit} className='form'>
+    return (
+        <form onSubmit={onSubmit} className="form">
             <div className="form-group">
                 <label htmlFor="firstName">First Name:</label>
                 <input 
@@ -47,6 +46,7 @@ const ActorForm = ({ existingActor = {}, updateCallback }) => {
                     id="firstName" 
                     value={firstName} 
                     onChange={(e) => setFirstName(e.target.value)}
+                    required
                 />
             </div>
             <div className="form-group">
@@ -56,20 +56,22 @@ const ActorForm = ({ existingActor = {}, updateCallback }) => {
                     id="lastName" 
                     value={lastName} 
                     onChange={(e) => setLastName(e.target.value)}
+                    required
                 />
             </div>
             <div className="form-group">
-                <label htmlFor="age">Age:</label>
+                <label htmlFor="nationality">Nationality:</label>
                 <input 
                     type="text" 
-                    id="age" 
-                    value={age} 
-                    onChange={(e) => setAge(e.target.value)}
+                    id="nationality" 
+                    value={nationality} 
+                    onChange={(e) => setNationality(e.target.value)}
+                    required
                 />
             </div>
-            <button type="submit">{updating ? "Update" : "Create"}</button>
+            <button type="submit">{updating ? "Update" : "Create"} Director</button>
         </form>
     );
 };
 
-export default ActorForm
+export default DirectorForm;

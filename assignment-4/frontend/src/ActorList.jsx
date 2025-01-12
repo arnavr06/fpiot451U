@@ -17,7 +17,9 @@ const ActorList = ({actors, updateActor, updateCallback, openCreateModal}) => {
         }
     }
     return <div>
-        <h2>Actors</h2>
+        <h1>Actors</h1>
+        <br></br>
+        <h4>Below is a list of actors, each assigned a unique ID upon creation. You can use this ID to create a relationship with a film from the Films List (if you have the Film ID) in the Film-Actor Relationships table.</h4>
         <button onClick={openCreateModal}>Create New Actor</button>
         <table>
             <thead>
