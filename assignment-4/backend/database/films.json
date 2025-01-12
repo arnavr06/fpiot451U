@@ -1,0 +1,12 @@
+[
+    {
+        "name": "Inception",
+        "year": "2010",
+        "directorId": 1
+    },
+    {
+        "name": "Fight Club",
+        "year": "1999",
+        "directorId": 2
+    }
+]
