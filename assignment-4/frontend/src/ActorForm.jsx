@@ -1,13 +1,16 @@
 import { useState } from "react"
 
 const ActorForm = ({ existingActor = {}, updateCallback }) => {
+
     // The following constants are used to gather values from the existing actor that you are updating
     const [firstName, setFirstName] = useState(existingActor.firstName || "")
     const [lastName, setLastName] = useState(existingActor.lastName || "")
     const [age, setAge] = useState(existingActor.age || "")
 
+    
     // The following constant checks if you are creating or updating an actor based on if the existing actor's field length = 0 or not
     const updating = Object.entries(existingActor).length !== 0
+
 
     const onSubmit = async (e) => {
         e.preventDefault()
@@ -40,6 +43,7 @@ const ActorForm = ({ existingActor = {}, updateCallback }) => {
             alert("Failed to fetch. Please check the server and try again.")
         }
     };
+
 
     // The following code displays the different options on the actor update form
     return(

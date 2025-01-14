@@ -58,4 +58,5 @@ const FilmList = ({ films, updateFilm, updateCallback, openCreateModal }) => {
     );
 };
 
+
 export default FilmList;

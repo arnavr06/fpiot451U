@@ -20,11 +20,13 @@ function App() {
   const [currentEntity, setCurrentEntity] = useState({})
   const [entityType, setEntityType] = useState("")
 
+
   useEffect(() => {
     fetchActors();
     fetchDirectors();
     fetchFilms();
   }, []);
+
 
   // The following constants define the method to fetch information for each class
   const fetchActors = async () => {
@@ -33,6 +35,7 @@ function App() {
     setActors(data.actors);
   };
 
+
   const fetchFilms = async () => {
     const response = await fetch("http://127.0.0.1:5000/films");
     const data = await response.json();
@@ -40,11 +43,13 @@ function App() {
     setFilms(data.films);
   };
 
+
   const fetchDirectors = async () => {
     const response = await fetch("http://127.0.0.1:5000/directors");
     const data = await response.json();
     setDirectors(data.directors);
   };
+
 
   // Constant to close the form for creating/updating
   const closeModal = () => {
@@ -52,6 +57,7 @@ function App() {
     setCurrentEntity({});
     setEntityType("");
   };
+
 
   // Constants to open the window for creating/updating an entity
   const openCreateModal = (type) => {
@@ -61,12 +67,14 @@ function App() {
     }
   };
 
+
   const openEditModal = (entity, type) => {
     if (isModalOpen) return
     setCurrentEntity(entity);
     setEntityType(type);
     setIsModalOpen(true);
   };
+
 
 // Constant which determmines what to do when an entity has been updated
   const onUpdate = () => {
@@ -75,6 +83,7 @@ function App() {
     fetchDirectors();
     fetchFilms();
   }
+
 
   // The following code sets up the static navigation bar at the top of the screen
   return (
@@ -126,6 +135,7 @@ function App() {
     </Router>
   );
 }
+
 
 // The following code sets up the Home page
 const Home = () => (

@@ -5,10 +5,12 @@ const FilmActorForm = ({ existingFilmActor = {}, fetchFilms, fetchActors, films,
     const [filmId, setFilmId] = useState(existingFilmActor.film_id || '');
     const [actorId, setActorId] = useState(existingFilmActor.actor_id || '');
 
+
     useEffect(() => {
         fetchFilms();
         fetchActors();
     }, [fetchFilms, fetchActors]);
+
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -83,5 +85,6 @@ const FilmActorForm = ({ existingFilmActor = {}, fetchFilms, fetchActors, films,
         </form>
     );
 };
+
 
 export default FilmActorForm;

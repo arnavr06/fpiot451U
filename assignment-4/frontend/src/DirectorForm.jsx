@@ -1,12 +1,15 @@
 import { useState } from "react";
 
 const DirectorForm = ({ existingDirector = {}, updateCallback }) => {
+    
     // The following constants are used to gather values from the existing director that you are updating
     const [firstName, setFirstName] = useState(existingDirector.firstName || "");
     const [lastName, setLastName] = useState(existingDirector.lastName || "");
     const [nationality, setNationality] = useState(existingDirector.nationality || "");
 
+
     const updating = Object.entries(existingDirector).length !== 0;
+
 
     const onSubmit = async (e) => {
         e.preventDefault();
@@ -78,5 +81,6 @@ const DirectorForm = ({ existingDirector = {}, updateCallback }) => {
         </form>
     );
 };
+
 
 export default DirectorForm;

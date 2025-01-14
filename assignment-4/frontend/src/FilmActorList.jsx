@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
 const FilmActorList = ({ updateFilmActor, openCreateModal}) => {
+    
     const [filmActors, setFilmActors] = useState([]);
+
 
     useEffect(() => {
         fetchFilmActors();

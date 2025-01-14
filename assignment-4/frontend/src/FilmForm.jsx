@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
 const FilmForm = ({ existingFilm = {}, updateCallback }) => {
+    
     // The following constants are used to gather values from the existing film that you are updating
     const [name, setName] = useState(existingFilm.name || "");
     const [year, setYear] = useState(existingFilm.year || "");
@@ -8,17 +9,21 @@ const FilmForm = ({ existingFilm = {}, updateCallback }) => {
     const [genreId, setGenreId] = useState(existingFilm.genreId || "");
     const [genres, setGenres] = useState([]);
 
+
     const updating = Object.entries(existingFilm).length !== 0;
+
 
     useEffect(() => {
         fetchGenres();
     }, []);
+
 
     const fetchGenres = async () => {
         const response = await fetch("http://127.0.0.1:5000/genres");
         const data = await response.json();
         setGenres(data.genres)
     };
+
 
     const onSubmit = async (e) => {
         e.preventDefault();

@@ -19,6 +19,7 @@ const ActorList = ({actors, updateActor, updateCallback, openCreateModal}) => {
         }
     }
 
+    
     // The following code sets up the layout of the actor table and includes buttons to modify data
     return <div>
         <h1>Actors</h1>
