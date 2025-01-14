@@ -2,6 +2,15 @@ from flask import request, jsonify
 from config import app, db
 from models import Actor, Director, Film, Genre, film_actor
 
+# Route for genres, not that they are only fetched and cannot be created or modified
+@app.route("/genres", methods=["GET"])
+def get_genres():
+    genres = Genre.query.all()
+    json_genres = list(map(lambda x: x.to_json(), genres))
+    return jsonify({"genres": json_genres})
+
+
+# Below are the routes for creating, reading, updating and deleting actors
 @app.route("/actors", methods=["GET"])
 def get_actors():
     actors = Actor.query.all()
@@ -45,6 +54,8 @@ def delete_actor(actor_id):
     db.session.commit()
     return jsonify({"message": "Successfully deleted actor"}), 200
 
+
+# Routes for creating, reading, deleting and updating directors 
 @app.route("/directors", methods=["GET"])
 def get_directors():
     directors = Director.query.all()
@@ -88,6 +99,7 @@ def delete_director(director_id):
     return jsonify({"message": "Successfully deleted director"}), 200
 
 
+# Routes for creating, reading, updating and deleting films
 @app.route("/films", methods=["GET"])
 def get_films():
     films = Film.query.all()
@@ -97,13 +109,6 @@ def get_films():
     for film in films:
         film_info = film.to_json()
         json_films.append(film_info)
-    # for film in films:
-    #     film_info = film.to_json()
-    #     print(f"Film: {film_info}")
-    #     for actor in film.actors:
-    #         film_info['actorId'] = actor.id
-    #         film_info['actorFullName'] = f"{actor.first_name} {actor.last_name}"
-    #         json_films.append(film_info.copy()) # Used copy here to ensure that each element in json_films is independent of each other
     return jsonify({"films": json_films})
 
 @app.route("/create_film", methods=["POST"])
@@ -137,6 +142,7 @@ def update_fim(film_id):
     film.name = data.get("name", film.name)
     film.year = data.get("year", film.year)
     film.director_id = data.get("directorId", film.director_id)
+    film.genre_id = data.get("genreId", film.genre_id)
     db.session.commit()
     return jsonify({"message": "Successfully updated film"}), 200
 
@@ -150,6 +156,8 @@ def delete_film(film_id):
     db.session.commit()
     return jsonify({"message": "Successfully deleted film"}), 200
 
+
+# Routes for creating, reading, updating and deleting relationships between films and actors
 @app.route("/film-actors", methods=["GET"])
 def get_film_actors():
     film_id = Film.id.label('film_id')
@@ -163,6 +171,7 @@ def get_film_actors():
     return jsonify({"film_actors": json_film_actors})
 
 
+# Main method to create the database and run the backend component of the app
 if __name__ == "__main__":
     with app.app_context():
         db.create_all()

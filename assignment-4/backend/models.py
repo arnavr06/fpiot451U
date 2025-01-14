@@ -3,10 +3,12 @@ from config import db
 from sqlalchemy.orm import relationship
 from typing import List, Dict, Any
 
+# The line below establishes a many-to-many relationship between films and actors
+# It creates a table which references film ID and actor ID as foreign keys
 film_actor = db.Table('film_actor', db.Column('film_id', db.Integer, db.ForeignKey('film.id'), primary_key=True), db.Column('actor_id', db.Integer, db.ForeignKey('actor.id'), primary_key=True))
-# film_genre = db.Table('film_genre', db.Column('film_id', db.Integer, db.ForeignKey('film.id'), primary_key=True), db.Column('genre_id', db.Integer, db.ForeignKey('genre.id'), primary_key=True))  
 
 
+# Below is the class definition for Actor
 class Actor(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(100), nullable=False)
@@ -22,6 +24,7 @@ class Actor(db.Model):
         }
 
 
+# Below is the class definiton for Director
 class Director(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(100), nullable=False)
@@ -37,6 +40,7 @@ class Director(db.Model):
         }
 
 
+# Below is the class definition for Film
 class Film(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
@@ -58,6 +62,7 @@ class Film(db.Model):
         }
 
 
+# Below is the class definition for Genre
 class Genre(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
@@ -67,7 +72,4 @@ class Genre(db.Model):
             "id": self.id,
             "name": self.name,
         }
-    
-
-
     

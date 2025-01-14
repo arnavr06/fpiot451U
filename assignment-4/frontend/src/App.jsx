@@ -25,6 +25,7 @@ function App() {
     fetchFilms();
   }, []);
 
+  // The following constants define the method to fetch information for each class
   const fetchActors = async () => {
     const response = await fetch("http://127.0.0.1:5000/actors");
     const data = await response.json();
@@ -44,12 +45,14 @@ function App() {
     setDirectors(data.directors);
   };
 
+  // Constant to close the form for creating/updating
   const closeModal = () => {
     setIsModalOpen(false);
     setCurrentEntity({});
     setEntityType("");
   };
 
+  // Constants to open the window for creating/updating an entity
   const openCreateModal = (type) => {
     if (!isModalOpen) {
       setEntityType(type);
@@ -64,6 +67,7 @@ function App() {
     setIsModalOpen(true);
   };
 
+// Constant which determmines what to do when an entity has been updated
   const onUpdate = () => {
     closeModal();
     fetchActors();
@@ -71,6 +75,7 @@ function App() {
     fetchFilms();
   }
 
+  // The following code sets up the static navigation bar at the top of the screen
   return (
     <Router>
       <div>
@@ -92,9 +97,6 @@ function App() {
               <Link to="/film-actors">Film-Actor Relationships</Link>
             </li>
             <li>
-              <Link to="/add-film-actor">Add Film-Actor Relationship</Link>
-            </li>
-            <li>
               <Link to="/pivot">Pivot Table</Link>
             </li>
           </ul>
@@ -106,7 +108,7 @@ function App() {
           <Route path="/directors" element={<DirectorList directors={directors} updateDirector={(director) => openEditModal(director, "director")} updateCallback={onUpdate} openCreateModal={() => openCreateModal("director")}/>} />
           <Route path="/films" element={<FilmList films={films} updateFilm={(film) => openEditModal(film, "film")} updateCallback={onUpdate} openCreateModal={() => openCreateModal("film")}/>} />
           {/* <Route path="/add-film-actor" element={<AddFilmActor } */}
-          <Route path="/pivot" element={<PivotTable fetchFilms={fetchFilms} films={films} />} />
+          <Route path="/pivot" element={<PivotTable fetchFilms={fetchFilms} films={films} fetchActors={fetchActors}/>} />
         </Routes>
 
         {isModalOpen && (
@@ -125,6 +127,7 @@ function App() {
   );
 }
 
+// The following code sets up the Home page
 const Home = () => (
   <div>
     <h1>Home</h1>

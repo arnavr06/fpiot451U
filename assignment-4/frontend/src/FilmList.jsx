@@ -31,6 +31,7 @@ const FilmList = ({ films, updateFilm, updateCallback, openCreateModal }) => {
                         <th>Name</th>
                         <th>Year</th>
                         <th>Director ID</th>
+                        <th>Genre ID</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -41,6 +42,7 @@ const FilmList = ({ films, updateFilm, updateCallback, openCreateModal }) => {
                             <td>{film.name}</td>
                             <td>{film.year}</td>
                             <td>{film.directorId}</td>
+                            <td>{film.genreId}</td>
                             <td>
                                 <button onClick={() => updateFilm(film)}>Update</button>
                                 <button onClick={() => onDelete(film.id)}>Delete</button>

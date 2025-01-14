@@ -1,6 +1,8 @@
 import React from "react"
 
 const ActorList = ({actors, updateActor, updateCallback, openCreateModal}) => {
+
+    // The following method carries out the process of deleting an entry from the actors list
     const onDelete = async (id) => {
         try {
             const options = {
@@ -16,6 +18,8 @@ const ActorList = ({actors, updateActor, updateCallback, openCreateModal}) => {
             alert(error)
         }
     }
+
+    // The following code sets up the layout of the actor table and includes buttons to modify data
     return <div>
         <h1>Actors</h1>
         <br></br>

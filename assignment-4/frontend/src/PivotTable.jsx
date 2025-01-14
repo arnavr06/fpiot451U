@@ -7,7 +7,7 @@ import createPlotlyRenderers from 'react-pivottable/PlotlyRenderers';
 
 const PlotlyRenderers = createPlotlyRenderers(Plot);
 
-const PivotTable = ({fetchFilms, films}) => {
+const PivotTable = ({fetchFilms, films, fetchActors, actors}) => {
     const [pivotState, setPivotState] = useState([]);
 
     useEffect(() => {
@@ -23,8 +23,19 @@ const PivotTable = ({fetchFilms, films}) => {
                 renderers={Object.assign({}, TableRenderers, PlotlyRenderers)}
                 {...pivotState}
             />
+            <div>
+                <label htmlFor="actorId">Select Actor ID:</label>
+                <select id="actorId">
+                    <option value="">Select Actor</option>
+                    {actors.map((actor) => (
+                        <option key={actor.id} value={actor.id}>
+                            {actor.id} - {actor.firstName} {actor.lastName}
+                        </option>
+                    ))}
+                </select>
+            </div>
         </div>
     );
 };
 
-export default PivotTable
+export default PivotTable;

@@ -5,6 +5,8 @@ import os
 
 current_directory = os.path.dirname(os.path.abspath(__file__))
 
+# This file is used to load data from each class' corresponding JSON file
+
 def load_json_data(filename):
     file_path = os.path.join(current_directory, 'database', filename)
     with open(file_path, 'r') as file:
@@ -55,5 +57,6 @@ if __name__ == "__main__":
         fill_actors()
         fill_directors()
         fill_films()
+        fill_genres()
         fill_film_actor()
         print("Successfully loaded database")

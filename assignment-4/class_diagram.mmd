@@ -1,5 +1,4 @@
 
-
 classDiagram
     class Actor {
         +Integer id
@@ -38,5 +37,5 @@ classDiagram
     }
 
 Actor "many" -- "many" Film: acted_in
-Director "1" -- "many" directed
+Director "1" -- "many" Film: directed
 Genre "1" -- "many" Film: contains
