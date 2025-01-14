@@ -14,5 +14,61 @@
     {
         "film_id": 3,
         "actor_id": 2
+    },
+    {
+        "film_id": 4,
+        "actor_id": 10
+    },
+    {
+        "film_id": 4,
+        "actor_id": 11
+    },
+    {
+        "film_id": 5,
+        "actor_id": 14
+    },
+    {
+        "film_id": 6,
+        "actor_id": 1
+    },
+    {
+        "film_id": 6,
+        "actor_id": 2
+    },
+    {
+        "film_id": 7,
+        "actor_id": 12
+    },
+    {
+        "film_id": 8,
+        "actor_id": 1
+    },
+    {
+        "film_id": 8,
+        "actor_id": 11
+    },
+    {
+        "film_id": 9,
+        "actor_id": 6
+    },
+    {
+        "film_id": 10,
+        "actor_id": 10
+    },
+    {
+        "film_id": 11,
+        "actor_id": 10
+    },
+    {
+        "film_id": 12,
+        "actor_id": 10
+    },
+    {
+        "film_id": 13,
+        "actor_id": 9
+    },
+    {
+        "film_id": 14,
+        "actor_id": 5
     }
 ]

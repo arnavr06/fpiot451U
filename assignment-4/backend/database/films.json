@@ -16,5 +16,77 @@
         "year": "2019",
         "directorId": 3,
         "genreId": 20
+    },
+    {
+        "name": "The Dark Knight",
+        "year": "2008",
+        "directorId": 1,
+        "genreId": 8
+    },
+    {
+        "name": "The Social Network",
+        "year": "2010",
+        "directorId": 2,
+        "genreId": 4
+    },
+    {
+        "name": "Pulp Fiction",
+        "year": "1994",
+        "directorId": 3,
+        "genreId": 6
+    },
+    {
+        "name": "Jurassic Park",
+        "year": "1993",
+        "directorId": 4,
+        "genreId": 2
+    },
+    {
+        "name": "The Wolf of Wall Street",
+        "year": "2013",
+        "directorId": 5,
+        "genreId": 8
+    },
+    {
+        "name": "Avatar",
+        "year": "2009",
+        "directorId": 6,
+        "genreId": 17
+    },
+    {
+        "name": "Gladiator",
+        "year": "2000",
+        "directorId": 7,
+        "genreId": 19
+    },
+    {
+        "name": "The Lord of the Rings: The Fellowship of the Ring",
+        "year": "2001",
+        "directorId": 8,
+        "genreId": 10
+    },
+    {
+        "name": "The Lord of the Rings: The Two Towers",
+        "year": "2002",
+        "directorId": 8,
+        "genreId": 10
+    },
+    {
+        "name": "The Lord of the Rings: The Return of the King",
+        "year": "2003",
+        "directorId": 8,
+        "genreId": 10
+    },
+    {
+        "name": "Pan's Labyrinth",
+        "year": "2006",
+        "directorId": 10,
+        "genreId": 10
+    },
+    {
+        "name": "The Shape of Water",
+        "year": "2017",
+        "directorId": 10,
+        "genreId": 16
     }
 ]

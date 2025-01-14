@@ -13,5 +13,65 @@
         "firstName": "Matthew",
         "lastName": "McConaughey",
         "age": 55
+    },
+    {
+        "firstName": "Robert",
+        "lastName": "Downey Jr.",
+        "age": 56
+    },
+    {
+        "firstName": "Scarlett",
+        "lastName": "Johansson",
+        "age": 36
+    },
+    {
+        "firstName": "Chris",
+        "lastName": "Hemsworth",
+        "age": 38
+    },
+    {
+        "firstName": "Tom",
+        "lastName": "Hanks",
+        "age": 65
+    },
+    {
+        "firstName": "Morgan",
+        "lastName": "Freeman",
+        "age": 84
+    },
+    {
+        "firstName": "Natalie",
+        "lastName": "Portman",
+        "age": 40
+    },
+    {
+        "firstName": "Christian",
+        "lastName": "Bale",
+        "age": 47
+    },
+    {
+        "firstName": "Anne",
+        "lastName": "Hathaway",
+        "age": 39
+    },
+    {
+        "firstName": "Denzel",
+        "lastName": "Washington",
+        "age": 67
+    },
+    {
+        "firstName": "Emma",
+        "lastName": "Stone",
+        "age": 33
+    },
+    {
+        "firstName": "Ryan",
+        "lastName": "Gosling",
+        "age": 41
+    },
+    {
+        "firstName": "Jennifer",
+        "lastName": "Lawrence",
+        "age": 31
     }
 ]

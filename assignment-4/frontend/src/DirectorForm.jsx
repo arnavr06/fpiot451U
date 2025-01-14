@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 const DirectorForm = ({ existingDirector = {}, updateCallback }) => {
+    // The following constants are used to gather values from the existing director that you are updating
     const [firstName, setFirstName] = useState(existingDirector.firstName || "");
     const [lastName, setLastName] = useState(existingDirector.lastName || "");
     const [nationality, setNationality] = useState(existingDirector.nationality || "");
@@ -15,6 +16,8 @@ const DirectorForm = ({ existingDirector = {}, updateCallback }) => {
             lastName,
             nationality
         };
+
+        // The following constants determine which URL to use and which HTTP method to use
         const url = "http://127.0.0.1:5000/" + (updating ? `update_director/${existingDirector.id}` : "create_director");
         const options = {
             method: updating ? "PATCH" : "POST",
@@ -37,6 +40,8 @@ const DirectorForm = ({ existingDirector = {}, updateCallback }) => {
         }
     };
 
+
+    // The following code displays the different options on the director update form
     return (
         <form onSubmit={onSubmit} className="form">
             <div className="form-group">

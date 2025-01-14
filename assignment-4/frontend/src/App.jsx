@@ -4,6 +4,7 @@ import ActorList from './ActorList'
 import DirectorList from './DirectorList'
 import FilmList from './FilmList'
 import FilmActorList from './FilmActorList'
+import FilmActorForm from './FilmActorForm'
 import './App.css'
 import ActorForm from "./ActorForm"
 import DirectorForm from "./DirectorForm"
@@ -107,18 +108,17 @@ function App() {
           <Route path="/actors" element={<ActorList actors={actors} updateActor={(actor) => openEditModal(actor, "actor")} updateCallback={onUpdate} openCreateModal={() => openCreateModal("actor")}/>} />
           <Route path="/directors" element={<DirectorList directors={directors} updateDirector={(director) => openEditModal(director, "director")} updateCallback={onUpdate} openCreateModal={() => openCreateModal("director")}/>} />
           <Route path="/films" element={<FilmList films={films} updateFilm={(film) => openEditModal(film, "film")} updateCallback={onUpdate} openCreateModal={() => openCreateModal("film")}/>} />
-          {/* <Route path="/add-film-actor" element={<AddFilmActor } */}
-          <Route path="/pivot" element={<PivotTable fetchFilms={fetchFilms} films={films} fetchActors={fetchActors}/>} />
+          <Route path="/film-actors" element={<FilmActorList updateFilmActor={(filmActor) => openEditModal(filmActor, "filmActor")} openCreateModal={() => openCreateModal("filmActor")} />} />          <Route path="/pivot" element={<PivotTable fetchFilms={fetchFilms} films={films} fetchActors={fetchActors}/>} />
         </Routes>
 
         {isModalOpen && (
           <div className="modal">
             <div className="modal-content">
               <span className="close" onClick={closeModal}>&times;</span>
-              {/* <ActorForm existingActor={currentActor} updateCallback={onUpdate} /> */}
               {entityType === "actor" && <ActorForm existingActor={currentEntity} updateCallback={onUpdate} />}
               {entityType === "director" && <DirectorForm existingDirector={currentEntity} updateCallback={onUpdate} />}
               {entityType === "film" && <FilmForm existingFilm={currentEntity} updateCallback={onUpdate} />}
+              {entityType === "filmActor" && <FilmActorForm existingFilmActor={currentEntity} fetchFilms={fetchFilms} fetchActors={fetchActors} films={films} actors={actors} updateCallback={onUpdate} />}
             </div>
           </div>
         )}
@@ -156,7 +156,12 @@ const Home = () => (
       <Link to="/film-actors">Go to Film-Actor Relationships</Link> - a table to view and create film-actor relationships
     </h4>
     <p>View, create, edit and delete relationships between films and actors based on their corresponding IDs.</p>
+    <br></br>
+    <h4>
+      <Link to="/pivot">Go to Pivot Table</Link> - a pivot table to view and visualise data
+    </h4>
+    <p>View and visualise data with charts and graphs, sorting by specified filters.</p>
   </div>
 );
 
-export default App
+export default App;

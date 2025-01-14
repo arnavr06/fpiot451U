@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 const FilmList = ({ films, updateFilm, updateCallback, openCreateModal }) => {
 
+    // The following method carries out the process of deleting an entry from the films list
     const onDelete = async (id) => {
         try {
             const options = {
@@ -18,6 +19,8 @@ const FilmList = ({ films, updateFilm, updateCallback, openCreateModal }) => {
         }
     };
 
+
+    // The following code sets up the layout of the film table and includes buttons to modify data
     return (
         <div>
             <h1>Films</h1>

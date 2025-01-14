@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 
 const FilmForm = ({ existingFilm = {}, updateCallback }) => {
+    // The following constants are used to gather values from the existing film that you are updating
     const [name, setName] = useState(existingFilm.name || "");
     const [year, setYear] = useState(existingFilm.year || "");
     const [directorId, setDirectorId] = useState(existingFilm.directorId || "");
@@ -28,6 +29,8 @@ const FilmForm = ({ existingFilm = {}, updateCallback }) => {
             directorId: parseInt(directorId),
             genreId: parseInt(genreId)
         };
+
+        // The following constants determine which URL to use and which HTTP method to use
         const url = "http://127.0.0.1:5000/" + (updating ? `update_film/${existingFilm.id}` : "create_film");
         const options = {
             method: updating ? "PATCH" : "POST",
@@ -51,6 +54,8 @@ const FilmForm = ({ existingFilm = {}, updateCallback }) => {
         }
     };
 
+
+    // The following code displays the different options on the film update form
     return (
         <form onSubmit={onSubmit} className="form">
             <div className="form-group">

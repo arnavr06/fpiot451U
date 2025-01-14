@@ -57,7 +57,7 @@ class Film(db.Model):
             "year": self.year,
             "directorId": self.director_id,
             "genreId": self.genre_id,
-            "actors": [actor.to_json() for actor in self.actors],
+            "actorId": [actor.id for actor in self.actors],
             "genre": self.genre.to_json() if self.genre else None
         }
 

@@ -53,4 +53,4 @@ const ActorList = ({actors, updateActor, updateCallback, openCreateModal}) => {
     </div>
 }
 
-export default ActorList
+export default ActorList;

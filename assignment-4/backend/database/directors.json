@@ -13,5 +13,40 @@
         "firstName": "Quentin",
         "lastName": "Tarantino",
         "nationality": "United Kingdom"
+    },
+    {
+        "firstName": "Steven",
+        "lastName": "Spielberg",
+        "nationality": "United States"
+    },
+    {
+        "firstName": "Martin",
+        "lastName": "Scorsese",
+        "nationality": "United States"
+    },
+    {
+        "firstName": "James",
+        "lastName": "Cameron",
+        "nationality": "Canada"
+    },
+    {
+        "firstName": "Ridley",
+        "lastName": "Scott",
+        "nationality": "United Kingdom"
+    },
+    {
+        "firstName": "Peter",
+        "lastName": "Jackson",
+        "nationality": "New Zealand"
+    },
+    {
+        "firstName": "Tim",
+        "lastName": "Burton",
+        "nationality": "United States"
+    },
+    {
+        "firstName": "Guillermo",
+        "lastName": "del Toro",
+        "nationality": "Mexico"
     }
 ]

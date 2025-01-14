@@ -148,20 +148,20 @@ button {
   cursor: pointer;
   border: none;
   border-radius: 4px;
-  background-color: #4CAF50;
+  background-color: #4c56af;
   color: white;
 }
 
 button:hover {
-  background-color: #45a049;
+  background-color: #443272;
 }
 
 button.delete {
-  background-color: #f44336;
+  background-color: #4c56af;
 }
 
 button.delete:hover {
-  background-color: #e53935;
+  background-color: #443272;
 }
 
 .navbar {
@@ -250,4 +250,8 @@ body {
 
 .btn:hover {
   background-color: #0056b3;
+}
+
+input, button, label {
+  margin-top: 10px;
 }

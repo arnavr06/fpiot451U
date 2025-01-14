@@ -1,6 +1,8 @@
 import React from 'react';
 
 const DirectorList = ({ directors, updateDirector, updateCallback, openCreateModal }) => {
+
+    // The following method carries out the process of deleting an entry from the directors list
     const onDelete = async (id) => {
         try {
             const options = {
@@ -17,6 +19,8 @@ const DirectorList = ({ directors, updateDirector, updateCallback, openCreateMod
         }
     };
 
+
+    // The following code sets up the layout of the director table and includes buttons to modify data
     return (
         <div>
             <h1>Directors</h1>

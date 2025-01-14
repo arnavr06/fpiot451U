@@ -160,15 +160,66 @@ def delete_film(film_id):
 # Routes for creating, reading, updating and deleting relationships between films and actors
 @app.route("/film-actors", methods=["GET"])
 def get_film_actors():
-    film_id = Film.id.label('film_id')
-    film_name = Film.name.label('film_name')
-    actor_id = Actor.id.label('actor_id')
-    actor_first_name = Actor.first_name.label('actor_first_name')
-    actor_last_name = Actor.last_name.label('actor_last_name')
+    film_actors = db.session.query(
+        film_actor.c.film_id,
+        Film.name.label('film_name'),
+        film_actor.c.actor_id,
+        Actor.first_name.label('actor_first_name'),
+        Actor.last_name.label('actor_last_name')
+    ).join(Film, Film.id == film_actor.c.film_id).join(Actor, Actor.id == film_actor.c.actor_id).all()
 
-    film_actors = db.session.query(film_id, film_name, actor_id, actor_first_name, actor_last_name).select_from(film_actor).join(Film, film_actor.c.film_id == Film.id).join(Actor, film_actor.c.actor_id == Actor.id).all()
-    json_film_actors = [{'film_id': x.film_id, 'film_name': x.film_name, 'actor_id': x.actor_id, 'actor_first_name': x.actor_name, 'actor_last_name': x.actor_last_name} for x in film_actors]
+    json_film_actors = [
+        {
+            'film_id': film_actor.film_id,
+            'film_name': film_actor.film_name,
+            'actor_id': film_actor.actor_id,
+            'actor_first_name': film_actor.actor_first_name,
+            'actor_last_name': film_actor.actor_last_name
+        }
+        for film_actor in film_actors
+    ]
     return jsonify({"film_actors": json_film_actors})
+
+@app.route("/add_film_actor", methods=["POST"])
+def add_film_actor():
+    film_id = request.json.get("film_id")
+    actor_id = request.json.get("actor_id")
+    if not film_id or not actor_id:
+        return jsonify({"message": "Please provide both film_id and actor_id"}), 400
+    film = Film.query.get(film_id)
+    actor = Actor.query.get(actor_id)
+    if not film or not actor:
+        return jsonify({"message": "Film or Actor not found"}), 404
+    film.actors.append(actor)
+    db.session.commit()
+    return jsonify({"message": "Successfully added film-actor relationship"}), 201
+
+@app.route("/update_film_actor/<int:film_id>/<int:actor_id>", methods=["PATCH"])
+def update_film_actor(film_id, actor_id):
+    new_film_id = request.json.get("film_id")
+    new_actor_id = request.json.get("actor_id")
+    if not new_film_id or not new_actor_id:
+        return jsonify({"message": "Please provide both new film_id and new actor_id"}), 400
+    film = Film.query.get(film_id)
+    actor = Actor.query.get(actor_id)
+    new_film = Film.query.get(new_film_id)
+    new_actor = Actor.query.get(new_actor_id)
+    if not film or not actor or not new_film or not new_actor:
+        return jsonify({"message": "Film or Actor not found"}), 404
+    film.actors.remove(actor)
+    new_film.actors.append(new_actor)
+    db.session.commit()
+    return jsonify({"message": "Successfully updated film-actor relationship"}), 200
+
+@app.route("/delete_film_actor/<int:film_id>/<int:actor_id>", methods=["DELETE"])
+def delete_film_actor(film_id, actor_id):
+    film = Film.query.get(film_id)
+    actor = Actor.query.get(actor_id)
+    if not film or not actor:
+        return jsonify({"message": "Film or Actor not found"}), 404
+    film.actors.remove(actor)
+    db.session.commit()
+    return jsonify({"message": "Successfully deleted film-actor relationship"}), 200
 
 
 # Main method to create the database and run the backend component of the app
